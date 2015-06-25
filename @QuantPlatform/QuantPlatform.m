@@ -40,6 +40,9 @@ classdef QuantPlatform < handle
         
         %回测函数SYS_BackTest
         profits = SYS_BackTest(pltfm, back_handle, model, begin_date, end_date);
+        
+        %函数SYS_ModelDataMapToMat，将Model的计算输出映射到包含所有股票的矩阵中
+        pos = SYS_ModelDataMapToMat(pltfm, model_output, tickers);
     end
 
 end

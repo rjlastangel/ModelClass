@@ -71,7 +71,7 @@ classdef BaseModel < handle
                  
                 
             
-            function [out1 out2]=ModelPort(BM, date)
+            function [out_1 out_2]=ModelPort(BM, date)
                 disp('run in basemodel modelport');
             end
     end
