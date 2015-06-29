@@ -32,7 +32,6 @@ classdef QuantPlatform < handle
         function [holding_daily, rtn_daily] = PerformBackTest(pltfm, model, beg_date, end_date)
             [holding_daily, rtn_daily] = pltfm.back_test_handle.PerformBackTest(model, pltfm, beg_date, end_date);
         end
-        
         %在数据不是最新的时候更新到最新的数据
         UpdateData(pltfm, date);
         

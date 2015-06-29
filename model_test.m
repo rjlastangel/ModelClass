@@ -6,5 +6,5 @@ t_0 = cputime;
 [out_1, out_2] = test_model.ModelPort(server, 20150617);
 time_1 = cputime - t_0
 server.InstallBackTest(BackTestByReport(2));
-[holding_daily, rtn_daily] = server.BackTest(test_model, 20080101, 20150617);
+[holding_daily, rtn_daily] = server.BackTest(test_model, 20010101, 20150617);
 time_2 = cputime - t_0
