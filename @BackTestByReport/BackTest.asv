@@ -1,0 +1,25 @@
+function [holding_daily, rtn_daily] = BackTest(back_handle, model, pltfm, begin_date, end_date)
+%UNTITLED8 Summary of this function goes here
+%   Detailed explanation goes here
+    back_handle.DispInfo();
+    
+    stock_data = pltfm.ch_stk_data;
+    Mkt_tradedays = stock_data.Mkt_tradedays;
+    tickers = stock_data.TickersCell;
+    ret = stock_data.Return;
+    ret(isnan(ret)) = 0;
+    day = back_handle.day;
+    cost = model.GetCost();
+    
+    begin_index = find(Mkt_tradedays >= begin_date);
+    begin_index = begin_index(1);
+    end_index = find(Mkt_tradedays <= end_date);
+    end_index = end_index(end);
+        
+    %计算每一天的单独持仓
+    pos = zeros(end_index, length(stock_data.TickersCell));
+    trade_flag = zeros(end_index, 1);
+    stat = 
+
+end
+
