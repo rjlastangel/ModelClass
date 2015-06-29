@@ -6,12 +6,15 @@ classdef BackTestByDay < BackTestBaseHandle
     end
     
     methods
+        
         function back_handle = BackTestByDay(d)
             back_handle = back_handle@BackTestBaseHandle(d);
         end
+        
         function DispInfo(bk)
             fprintf('Back Testing By %d Day\n', bk.day);
         end
+        
     end
     
 end
