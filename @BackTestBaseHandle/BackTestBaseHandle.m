@@ -10,7 +10,10 @@ classdef BackTestBaseHandle < handle
         function back_handle = BackTestBaseHandle(d)
             back_handle.day = d;
         end
-        daily_return = BackTest(back_handle, model, pltfm, begin_date, end_date);
+        
+        DispInfo(bk);
+        
+        [holding_daily, rtn_daily] = BackTest(back_handle, model, pltfm, begin_date, end_date);
     end
     
 end

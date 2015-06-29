@@ -3,5 +3,5 @@ function InitializePlatform(pltfm, filePath, today)
         'totaltradedays');
     pltfm.ch_idx_data = load(fullfile(filePath, 'CHIDX.mat'), 'Mkt_tradedays', 'open', 'close', 'istradeday', 'TickersCell');
     pltfm.last_update_date = today;
-    pltfm.get_data_ready = true;
+    pltfm.is_data_ready = true;
 end

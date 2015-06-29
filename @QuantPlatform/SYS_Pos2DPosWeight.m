@@ -50,5 +50,6 @@ for i=1:size(Pos,1)
     end
 end
 
- rtnArr=[mat2cell(Mkt_tradedays, ones(1, length(Mkt_tradedays)), 1) mat2cell(rtnArr, ones(1, length(rtnArr)), ones(1, 4))];
+rtnArr = [num2cell(Mkt_tradedays) num2cell(rtnArr)];
+
 end

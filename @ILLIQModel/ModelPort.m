@@ -1,5 +1,5 @@
 function [out_1, out_2]=ModelPort(md, pltfm, date)
-    disp('run in ILLIQModel ModelPort');
+  %  disp('run in ILLIQModel ModelPort');
     if pltfm.GetDataReady(date) == false
         disp('Platform Data is NOT Ready!Please Initialize Platform or Update Data!\n');
     else

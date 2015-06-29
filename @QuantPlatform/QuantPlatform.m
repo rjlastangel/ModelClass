@@ -4,12 +4,33 @@ classdef QuantPlatform < handle
         ch_idx_data
         last_update_date
         back_test_handle
-        get_data_ready
+        is_data_ready
+        is_back_test_ready
     end
     
     methods
-        function QP = QuantPlatform()
-            QP.get_data_ready = false;
+        function pltfm = QuantPlatform()
+            pltfm.is_data_ready = false;
+            pltfm.is_back_test_ready = false;
+        end
+        
+        function InstallBackTest(pltfm, bk)
+            pltfm.back_test_handle = bk;
+            pltfm.is_back_test_ready = true;
+        end
+        
+        function [holding_daily, rtn_daily] = BackTest(pltfm, model, beg_date, end_date)
+            if pltfm.is_back_test_ready
+                [holding_daily, rtn_daily] = pltfm.PerformBackTest(model, beg_date, end_date);
+            else
+                disp('ERROR!No Back Test Handle Exist!')
+                holding_daily = 0;
+                rtn_daily = 0;
+            end
+        end
+        
+        function [holding_daily, rtn_daily] = PerformBackTest(pltfm, model, beg_date, end_date)
+            [holding_daily, rtn_daily] = pltfm.back_test_handle.BackTest(model, pltfm, beg_date, end_date);
         end
         %在数据不是最新的时候更新到最新的数据
         UpdateData(pltfm, date);
