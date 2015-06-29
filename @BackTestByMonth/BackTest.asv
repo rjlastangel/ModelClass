@@ -39,7 +39,7 @@ function [holding_daily, rtn_daily] = BackTest(back_handle, model, pltfm, begin_
         last_month = this_month;
         last_is_first_half = this_day <= 15;
     end
-    pos(end_index, :) = pos(end_index-1, :);
+    pos(index
     
     %从每天的模型持仓计算出真实持仓和每日收益率
     [holding_daily, rtn_daily] = pltfm.SYS_Pos2DPosWeight(Mkt_tradedays, pos, ret, trade_flag, cost);

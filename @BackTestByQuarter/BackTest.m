@@ -1,5 +1,5 @@
 function [holding_daily, rtn_daily] = BackTest(back_handle, model, pltfm, begin_date, end_date)
-%UNTITLED4 Summary of this function goes here
+%UNTITLED6 Summary of this function goes here
 %   Detailed explanation goes here
     back_handle.DispInfo();
     
@@ -25,10 +25,11 @@ function [holding_daily, rtn_daily] = BackTest(back_handle, model, pltfm, begin_
         this_month = mod(fix(Mkt_tradedays(index) / 100), 100);
         next_month = mod(fix(Mkt_tradedays(index+1) / 100), 100);
         this_day = mod(Mkt_tradedays(index), 100);
-        if (day == -1 && this_month ~= next_month) || (day == 0 && last_is_first_half && (this_day > 15)) || (day == 1 && last_month ~= this_month)
+        if (day == -1 && (this_month ~= next_month) && (mod(this_month, 3) == 0)) || (day == 0 && (last_is_first_half && this_day > 15) && (mod(this_month, 3) == 2)) ...
+                || (day == 1 &&(last_month ~= this_month) && (mod(this_month, 3) == 1))
             trade_flag(index) = 1;
             [out_1, out_2] = model.ModelPort(pltfm, Mkt_tradedays(index));
-            pos(index, :) = (pltfm.SYS_ModelDataMapToMat(out_1, tickers))';            
+            pos(index, :) = (pltfm.SYS_ModelDataMapToMat(out_1, tickers))';  
         else
             if index == 1
                 pos(index, :) = 0;
@@ -41,7 +42,7 @@ function [holding_daily, rtn_daily] = BackTest(back_handle, model, pltfm, begin_
     end
     pos(end_index, :) = pos(end_index-1, :);
     
-    %从每天的模型持仓计算出真实持仓和每日收益率
+     %从每天的模型持仓计算出真实持仓和每日收益率
     [holding_daily, rtn_daily] = pltfm.SYS_Pos2DPosWeight(Mkt_tradedays, pos, ret, trade_flag, cost);
     
 end

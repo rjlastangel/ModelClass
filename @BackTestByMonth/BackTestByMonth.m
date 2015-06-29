@@ -9,8 +9,8 @@ classdef BackTestByMonth < BackTestBaseHandle
         
         function back_handle = BackTestByMonth(d)
             back_handle = back_handle@BackTestBaseHandle(d);
-            if d < 1 || d > 31
-                fprintf('Week Parameter Error!\n');
+            if d < -1 || d > 1
+                fprintf('Month Parameter Error!\n');
             end
         end
         
