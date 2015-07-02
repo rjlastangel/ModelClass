@@ -9,16 +9,20 @@ classdef QuantPlatform < handle
     end
     
     methods
+        
+        %平台构造函数
         function pltfm = QuantPlatform()
             pltfm.is_data_ready = false;
             pltfm.is_back_test_ready = false;
         end
         
+        %给平台指定回测方法对象
         function InstallBackTest(pltfm, bk)
             pltfm.back_test_handle = bk;
             pltfm.is_back_test_ready = true;
         end
         
+        %执行平台回测方法
         function [holding_daily, rtn_daily] = BackTest(pltfm, model, beg_date, end_date)
             if pltfm.is_back_test_ready
                 [holding_daily, rtn_daily] = pltfm.PerformBackTest(model, beg_date, end_date);
@@ -29,6 +33,7 @@ classdef QuantPlatform < handle
             end
         end
         
+        %通过调用平台的回测方法对象完成回测过程
         function [holding_daily, rtn_daily] = PerformBackTest(pltfm, model, beg_date, end_date)
             [holding_daily, rtn_daily] = pltfm.back_test_handle.PerformBackTest(model, pltfm, beg_date, end_date);
         end

@@ -38,7 +38,7 @@ function [out_1, out_2]=ModelPort(md, pltfm, date)
         fa = temp;              %只用illiq因子    
 
         idx=find((yuan_vol(index,:)>1) & (STK_close(index,:)./STK_close(index-1,:)-1<.095) & (istradeday(index,:)>0) & ((isST(index,:)<1|isnan(isST(index,:)))) ...
-            & (sum(istradeday(index-10:index-1,:)>0,1)==10) & (totaltradedays(index, :) >250));      
+            & (sum(istradeday(index-10:index-1,:)>0,1)==10) & (totaltradedays(index, :) >250));
         [temp,idy]=sort(fa,'ascend');               %排序 fa为因子得分  
  
         ix=ismember(idy,idx);   %停牌股票 涨跌停 ST股票筛选
